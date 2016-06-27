@@ -1,0 +1,49 @@
+{% extends 'account.html.twig' %}
+
+{% block title %} {{ 'Login account'|trans({}, 'FOSUserBundle') }} {% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="col-md-8 col-md-offset-2 account-panel">
+        <div class="panel panel-default">
+            <div class="panel-heading">{{ 'Login to account'|trans({}, 'FOSUserBundle') }}</div>
+            <div class="panel-body">
+                <form action="{{ path("fos_user_security_check") }}" method="post">
+                    {% if error %}
+                        <div class="message">{{ error|trans({}, 'FOSUserBundle') }}</div>
+                    {% endif %}
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="username">{{ 'Username'|trans({}, 'FOSUserBundle') }}</label>
+                        <div class="col-md-6">
+                            <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="password">{{ 'Password'|trans({}, 'FOSUserBundle') }}</label>
+                        <div class="col-md-6">
+                            <input class="form-control" type="password" id="password" name="_password" required="required" />
+                        </div>
+                    </div>
+
+                    <div class="form-group form-remember">
+                        <div class="col-md-offset-4 col-md-6">
+                            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                            <label for="remember_me">{{ 'Remember Me'|trans({}, 'FOSUserBundle') }}</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-submit">
+                        <div class=" col-md-offset-4 col-md-6">
+                            <input class="btn btn-primary" type="submit" id="_submit" name="_submit" value="{{ 'Login'|trans({}, 'FOSUserBundle') }}" />
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
