@@ -1,0 +1,52 @@
+{% extends "account.html.twig" %}
+
+{% block body %}
+    <div class="container">
+        <div class="col-md-8 col-md-offset-2 account-panel">
+            <div class="panel panel-default">
+                <div class="panel-heading">{{ 'Login to account'|trans({}, 'FOSUserBundle') }}</div>
+                <div class="panel-body">
+                    <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+                        {#{{ form_widget(form) }}#}
+                        {% if error %}
+                            <div class="message">{{ error|trans({}, 'FOSUserBundle') }}</div>
+                        {% endif %}
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="fos_user_registration_form_username">{{ 'Username'|trans({}, 'FOSUserBundle') }}</label>
+                            <div class="col-md-6">
+                                <input class="form-control" id="fos_user_registration_form_username" name="fos_user_registration_form[username]" required="required" maxlength="255" pattern=".{2,}" type="text">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="fos_user_registration_form_email">{{ 'E-Mail'|trans({}, 'FOSUserBundle') }}</label>
+                            <div class="col-md-6">
+                                <input class="form-control" id="fos_user_registration_form_email" name="fos_user_registration_form[email]" required="required" type="email">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="fos_user_registration_form_plainPassword_first">{{ 'Password'|trans({}, 'FOSUserBundle') }}</label>
+                            <div class="col-md-6">
+                                <input class="form-control" id="fos_user_registration_form_plainPassword_first" name="fos_user_registration_form[plainPassword][first]" required="required" type="password" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="fos_user_registration_form_plainPassword_second">{{ 'Confirm Password'|trans({}, 'FOSUserBundle') }}</label>
+                            <div class="col-md-6">
+                                <input class="form-control" id="fos_user_registration_form_plainPassword_second" name="fos_user_registration_form[plainPassword][second]" required="required" type="password" />
+                            </div>
+                        </div>
+
+                        <div>
+                            <input type="submit" value="{{ 'Register'|trans({}, 'FOSUserBundle') }}" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}
